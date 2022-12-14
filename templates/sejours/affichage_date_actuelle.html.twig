@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SejoursController!{% endblock %}
+
+{% block body %}
+Séjour actuelles: 
+<ul>
+    {% for Sejour in sejours %}
+    {% if datedujour >=Sejour.datedebut and datedujour <= Sejour.datefin %}
+    <ul>
+        {#<h2>nb de Séjours: {{Sejour|length}}<br></h2>#}
+        <li>Séjour debutée le :{{ Sejour.getDatedebut|date("y-m-d")}}  terminer le :  {{Sejour.getDatefin|date("y-m-d")}}
+        <a href="{{path("app_sejourId",{id:Sejour.id})}}">Ouvrir</a><br> 
+    {% else %} 
+    {% endif %}
+    </ul>
+
+{% endfor %}
+ <br>
+ <br>
+    
+{% endblock %}

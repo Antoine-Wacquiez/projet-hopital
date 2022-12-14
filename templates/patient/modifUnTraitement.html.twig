@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bodrum - Modifier - Patient{% endblock %}
+
+{% block body %}
+
+    <br><br>
+    <div id="form_login">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+    <a href="{{ path('app_patient')}}">Retour en arrière</a>
+{% endblock %}

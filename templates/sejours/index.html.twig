@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SejoursController!{% endblock %}
+
+{% block body %}
+nb de Séjours: {{Sejours|length}}
+<ul>
+    {% for Sejour in Sejours %}
+    <li>ID: {{Sejour.getid()}}  - Date debut:  {{ Sejour.getDatedebut|date("y-m-d")}}  - Date fin:  {{Sejour.getDatefin|date("y-m-d")}}  -  Description:  {{Sejour.getDescription()}}  -  ID patient: {{Sejour.getPatient.getId()}}  -  ID service:  {{Sejour.getService.getId()}}  - ID Lit: {{Sejour.getLit.getId()}}
+
+    <br>
+    <td><a href="{{path("app_sejourId",{id:Sejour.id})}}">Ouvrir</a></td>
+    <td><a href="{{path("formulaire_modif_sejour",{id:Sejour.id})}}">Modifier</a></td>
+    
+{% endfor %}
+ <br>
+ <br>
+    <td><a href="{{path("ajouts_sejours")}}">ajout</a></td>  
+    <br>
+    <td><br><a href="{{path("app_sejours_actuels")}}">voir les sejours actuelles</a></td>
+{% endblock %}

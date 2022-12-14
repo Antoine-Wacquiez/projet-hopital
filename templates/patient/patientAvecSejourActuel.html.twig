@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bodrum - Patients{% endblock %}
+
+{% block body %}
+    <br><br><br>
+    <div class="mx-auto p-4 bg-light w-75"> 
+        <h2>L'arrivée d'un patient</h2>
+        <br>
+        <h4>Le nombre de patient dont le séjour commence aujourd'hui : {{sejours|length}}</h4>
+        <br>
+        <br>
+        <table class="table">
+        <tr>
+            <th>id </th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Séjour</th>
+        </tr>
+
+        {% for sejour in sejours %}<tr>
+            <td>{{sejour.getPatient.getId}}</td>
+            <td>{{sejour.getPatient.getNom}}</td>
+            <td>{{sejour.getPatient.getPrenom}}</td>
+            <td><a href="{{path("sejour_info",{id:sejour.id})}}"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+            </tr>
+            {% else %} Aucun séjour enregistré
+        {% endfor %}
+        </table>
+        <br><br>
+    </div>
+{% endblock %}

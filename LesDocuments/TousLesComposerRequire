@@ -1,0 +1,9 @@
+composer install
+
+composer require webapp
+composer require annotations
+composer require symfony/webpack-encore-bundle
+composer require symfony/orm-pack
+composer require symfony/maker-bundle --dev
+composer require symfony/form
+composer require symfony/security-bundle

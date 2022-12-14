@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Info séjour du Patient{% endblock %}
+
+{% block body %}
+
+<br><br><br>
+    <div class="mx-auto p-4 bg-light w-75"> 
+    <br>
+        <h3 >Les infos du séjour :</h3>
+        <br>
+        <table class="table">
+            <tr>
+                <th>id</th>
+                <th>Lit</th>
+                <th>Chambre</th>
+                <th>Service</th>
+                <th>Période</th>
+                <th>Description</th>
+                <th>Validation</th>
+                <th>Modifier</th>
+            </tr>
+                <td>{{sejour.getId}}</td>
+                <td>{{sejour.getLit.getId}}</td>
+                <td>{{sejour.getLit.getChambre.getId}}</td>
+                <td>{{sejour.getService.getLibelle}}</td>
+                <td>Du {{sejour.getdatedebut|date('Y-m-d')}} | Au {{sejour.getdatefin|date('Y-m-d')}}</td>
+                <td>{{sejour.getdescription}}</td>
+                <td>{{sejour.isValidation}}</td>
+                <td>
+                    <a href="{{path("formulaire_modif_sejour_patient",{id:sejour.id})}}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                </td>
+        </table>
+        <br><br>
+        <a href="{{path("app_sejours_actuels_patient")}}">Retour aux patients d'aujourd'hui</a>  
+    </div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bodrum - Le patient{% endblock %}
+
+{% block body %}
+    <br><br><br>
+    <div class="mx-auto p-4 bg-light w-75"> 
+        <br>
+        <table class="table">
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Séjour(s)</th>
+            <th>Ajouter un Séjour</th>
+        </tr>
+
+        {% if patient %}
+            <tr>
+                <td>{{patient.getId}}</td>
+                <td>{{patient.getNom}}</td> 
+                <td>{{patient.getPrenom}}</td>
+                <td>
+                    {% for sejour in patient.getSejour %}
+                        id : {{sejour.getId}} <br>
+                        Lit n°{{sejour.getLit.getId}} dans la chambre n°{{sejour.getLit.getChambre.getId}}<br>
+                        Service : {{sejour.getService.getLibelle}} <br>
+                        Du {{sejour.getdatedebut|date('Y-m-d')}} | Au {{sejour.getdatefin|date('Y-m-d')}} <br>
+                        Description : {{sejour.getdescription}}<br>
+                        Validation : {{sejour.isValidation}}<br> 
+                        <br>
+                    {% else %} Aucun séjour enregistré
+                    {% endfor %}
+                </td>
+                <td><a href="{{path("ajouts_sejours_patient",{id:patient.id})}}"><i class="fa fa-folder-plus"></i></a></td>
+            {# <a href="{{path("app_modif_patient",{id:patient.id})}}">Modifier</a>
+            <a href="{{path("app_supp_patient",{id:patient.id})}}" onclick="Etes-vous sûr de vouloir supprimer ?">Supprimer</a>#}
+            </tr>
+        {% else %}
+            Pas de patient trouvé.
+        {% endif %}
+        </table>
+        <a href="{{path("app_patient")}}">Retour aux patients</a>
+        <br><br> 
+    </div>
+{% endblock %}
